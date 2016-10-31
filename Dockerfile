@@ -23,7 +23,7 @@ RUN apt-get install -y curl grep sed dpkg && \
 ENV PATH /opt/conda/bin:$PATH
 
 # Install XGBoost library
-RUN apt-get install -y gfortran libatlas-base-dev gfortran pkg-config \
+RUN apt-get update --fix-missing && apt-get install -y gfortran libatlas-base-dev gfortran pkg-config \
             libfreetype6-dev libxft-dev libpng-dev libhdf5-serial-dev g++ \
             make patch lib32ncurses5-dev
 
