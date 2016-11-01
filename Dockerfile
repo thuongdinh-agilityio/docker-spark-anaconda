@@ -40,6 +40,7 @@ RUN cd /opt && \
 
 # set environment var to python package for both python2 and python3
 ENV PYTHONPATH /opt/xgboost/python-package
+ENV PYTHONPATH $SPARK_HOME/python/lib/py4j-0.10.3-src.zip:$SPARK_HOME/python/:$PYTHONPATH
 
 USER $NB_USER
 
