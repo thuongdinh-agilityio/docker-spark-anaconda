@@ -41,9 +41,6 @@ RUN cd /opt && \
 # set environment var to python package for both python2 and python3
 ENV PYTHONPATH /opt/xgboost/python-package
 
-# install R package - use pre-compiled CRAN version
-RUN Rscript -e "install.packages('xgboost',repos='http://cran.rstudio.com/')"
-
 USER $NB_USER
 
 WORKDIR $SPARK_HOME
