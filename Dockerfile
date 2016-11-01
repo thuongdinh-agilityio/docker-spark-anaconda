@@ -44,5 +44,9 @@ ENV PYTHONPATH $SPARK_HOME/python/lib/py4j-0.10.3-src.zip:$SPARK_HOME/python/:$P
 
 USER $NB_USER
 
+# Install spark-sklearn
+
+RUN pip install spark-sklearn
+
 WORKDIR $SPARK_HOME
 CMD ["bin/spark-class", "org.apache.spark.deploy.master.Master"]
