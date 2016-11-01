@@ -27,10 +27,24 @@ RUN apt-get update --fix-missing && apt-get install -y gfortran libatlas-base-de
             libfreetype6-dev libxft-dev libpng-dev libhdf5-serial-dev g++ \
             make patch lib32ncurses5-dev
 
-RUN git clone --recursive https://github.com/dmlc/xgboost && \
-    cd xgboost && \
-    make -j4 && \
-    cd python-package; python setup.py install
+USER root
+
+# install gcc with openmp support in conda
+RUN conda install -y gcc
+
+# download and build xgboost
+RUN cd /opt && \
+  git clone --recursive https://github.com/dmlc/xgboost && \
+  cd xgboost && \
+  make -j4
+
+# set environment var to python package for both python2 and python3
+ENV PYTHONPATH /opt/xgboost/python-package
+
+# install R package - use pre-compiled CRAN version
+RUN Rscript -e "install.packages('xgboost',repos='http://cran.rstudio.com/')"
+
+USER $NB_USER
 
 WORKDIR $SPARK_HOME
 CMD ["bin/spark-class", "org.apache.spark.deploy.master.Master"]
