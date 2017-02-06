@@ -7,8 +7,9 @@ Use it in a standalone cluster with the accompanying docker-compose.yml, or as a
 ## What it Gives You
  - Anaconda and Python 3.5
  - XGBoost
- - Apache Spark 2.x
+ - Apache Spark 2.0.2
  - [Spark-sklearn](https://github.com/databricks/spark-sklearn)
+ - [GraphFrames](https://graphframes.github.io/index.html) 0.3.0-spark2.0-s_2.11
 
 ## Docker example
 
