@@ -29,7 +29,7 @@ docker run -i -t -p 8888:8888 thuongdinh/docker-spark-anaconda /bin/bash -c "/op
 To able to use Graphframes with pyspark, make sure you set PYSPARK_SUBMIT_ARGS env with value:
 
 ```
---packages graphframes:graphframes:0.3.0-spark2.0-s_2.11 --jars /usr/spark-2.0.2/jars/scala-logging_2.12-3.5.0.jar pyspark-shell
+--packages graphframes:graphframes:0.3.0-spark2.0-s_2.11 --jars /usr/spark-2.0.2/jars/scala-logging-slf4j_2.11-2.1.2.jar pyspark-shell
 ```
 
 ## License

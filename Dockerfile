@@ -50,14 +50,14 @@ RUN pip install spark-sklearn
 
 # Install Graphframes
 ENV GRAPH_FRAMES_VERSION 0.3.0-spark2.0-s_2.11
-ENV SCALA_LOGGING_VERSION 2.12-3.5.0
+ENV SCALA_LOGGING_VERSION 2.11-2.1.2
 ADD ./graphframes-dist/graphframes-${GRAPH_FRAMES_VERSION} $SPARK_HOME/graphframes
 ADD ./graphframes-dist/graphframes-${GRAPH_FRAMES_VERSION}.jar $SPARK_HOME/jars
-ADD ./graphframes-dist/scala-logging_${SCALA_LOGGING_VERSION}.jar $SPARK_HOME/jars
+ADD ./graphframes-dist/scala-logging-slf4j_${SCALA_LOGGING_VERSION}.jar $SPARK_HOME/jars
 RUN cd $SPARK_HOME/graphframes && \
     ./build/sbt assembly && \
     mv $SPARK_HOME/graphframes/python/graphframes $SPARK_HOME/python/pyspark
-ENV PYSPARK_SUBMIT_ARGS "--packages graphframes:graphframes:${GRAPH_FRAMES_VERSION} --jars $SPARK_HOME/jars/scala-logging_${SCALA_LOGGING_VERSION}.jar pyspark-shell"
+ENV PYSPARK_SUBMIT_ARGS "--packages graphframes:graphframes:${GRAPH_FRAMES_VERSION} --jars $SPARK_HOME/jars/scala-logging-slf4j_${SCALA_LOGGING_VERSION}.jar pyspark-shell"
 
 WORKDIR $SPARK_HOME
 CMD ["bin/spark-class", "org.apache.spark.deploy.master.Master"]
