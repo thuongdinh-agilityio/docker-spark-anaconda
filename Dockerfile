@@ -1,7 +1,5 @@
 FROM gettyimages/spark
 
-MAINTAINER Thuong Dinh "https://github.com/thuongdinh"
-
 # ANACONDA 3
 
 RUN apt-get update --fix-missing && apt-get install -y wget bzip2 ca-certificates \
@@ -9,7 +7,7 @@ RUN apt-get update --fix-missing && apt-get install -y wget bzip2 ca-certificate
     git mercurial subversion
 
 RUN echo 'export PATH=/opt/conda/bin:$PATH' > /etc/profile.d/conda.sh && \
-    wget --quiet https://repo.continuum.io/archive/Anaconda3-4.2.0-Linux-x86_64.sh -O ~/anaconda.sh && \
+    wget --quiet https://repo.continuum.io/archive/Anaconda3-4.3.1-Linux-x86_64.sh -O ~/anaconda.sh && \
     /bin/bash ~/anaconda.sh -b -p /opt/conda && \
     rm ~/anaconda.sh
 
@@ -49,7 +47,7 @@ USER $NB_USER
 RUN pip install spark-sklearn
 
 # Install Graphframes
-ENV GRAPH_FRAMES_VERSION 0.3.0-spark2.0-s_2.11
+ENV GRAPH_FRAMES_VERSION 0.4.0-spark2.1-s_2.11
 ADD ./graphframes-dist/graphframes-${GRAPH_FRAMES_VERSION} $SPARK_HOME/graphframes
 RUN cd $SPARK_HOME/graphframes && \
     ./build/sbt assembly && \

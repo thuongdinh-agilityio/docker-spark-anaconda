@@ -5,11 +5,11 @@ This Docker build based on [anaconda3](https://hub.docker.com/r/continuumio/anac
 Use it in a standalone cluster with the accompanying docker-compose.yml, or as a base for more complex recipes.
 
 ## What it Gives You
- - Anaconda and Python 3.5
+ - Anaconda 4.3.1 and Python 3.5
  - XGBoost
- - Apache Spark 2.0.2
+ - Apache Spark 2.1.0
  - [Spark-sklearn](https://github.com/databricks/spark-sklearn)
- - [GraphFrames](https://graphframes.github.io/index.html) 0.3.0-spark2.0-s_2.11
+ - [GraphFrames](https://graphframes.github.io/index.html) 0.4.0-spark2.1-s_2.11
 
 ## Docker example
 
