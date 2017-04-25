@@ -10,6 +10,7 @@ Use it in a standalone cluster with the accompanying docker-compose.yml, or as a
  - Apache Spark 2.1.0
  - [Spark-sklearn](https://github.com/databricks/spark-sklearn)
  - [GraphFrames](https://graphframes.github.io/index.html) 0.4.0-spark2.1-s_2.11
+ - [Mongo-Spark-Connector](https://spark-packages.org/package/mongodb/mongo-spark) 2.10:2.0.0
 
 ## Docker example
 

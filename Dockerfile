@@ -52,7 +52,15 @@ ADD ./graphframes-dist/graphframes-${GRAPH_FRAMES_VERSION} $SPARK_HOME/graphfram
 RUN cd $SPARK_HOME/graphframes && \
     ./build/sbt assembly && \
     mv $SPARK_HOME/graphframes/python/graphframes $SPARK_HOME/python/pyspark
-ENV PYSPARK_SUBMIT_ARGS "--packages graphframes:graphframes:${GRAPH_FRAMES_VERSION} pyspark-shell"
+
+# Install Mongo-spark-connector
+ENV MONGO_SPARK_CONNECTOR_VERSION 2.0.0
+ENV SPARK_VERSION 2.10
+ADD ./mongo-spark-connector/mongo-spark-connector_${SPARK_VERSION}_${MONGO_SPARK_CONNECTOR_VERSION} $SPARK_HOME/org.mongodb.spark
+RUN cd $SPARK_HOME/org.mongodb.spark && \
+    ./build/sbt assembly
+
+ENV PYSPARK_SUBMIT_ARGS "--packages graphframes:graphframes:${GRAPH_FRAMES_VERSION},org.mongodb.spark:mongo-spark-connector_${SPARK_VERSION}:${MONGO_SPARK_CONNECTOR_VERSION} pyspark-shell"
 
 WORKDIR $SPARK_HOME
 CMD ["bin/spark-class", "org.apache.spark.deploy.master.Master"]
