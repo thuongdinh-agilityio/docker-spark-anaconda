@@ -58,7 +58,9 @@ ENV MONGO_SPARK_CONNECTOR_VERSION 2.0.0
 ENV SPARK_VERSION 2.10
 ADD ./mongo-spark-connector/mongo-spark-connector_${SPARK_VERSION}_${MONGO_SPARK_CONNECTOR_VERSION} $SPARK_HOME/org.mongodb.spark
 RUN cd $SPARK_HOME/org.mongodb.spark && \
-    ./build/sbt assembly
+    ./sbt check && \
+    ./sbt +publish-signed && \
+    ./sbt +spPublish
 
 ENV PYSPARK_SUBMIT_ARGS "--packages graphframes:graphframes:${GRAPH_FRAMES_VERSION},org.mongodb.spark:mongo-spark-connector_${SPARK_VERSION}:${MONGO_SPARK_CONNECTOR_VERSION} pyspark-shell"
 
